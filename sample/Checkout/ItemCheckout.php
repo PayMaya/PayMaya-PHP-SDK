@@ -38,4 +38,3 @@ $itemCheckout->execute();
 
 echo "Checkout ID: " . $itemCheckout->getCheckoutId() . "\n";
 echo "Checkout URL: " . $itemCheckout->getRedirectUrl() . "\n";
-
