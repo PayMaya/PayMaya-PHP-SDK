@@ -13,7 +13,7 @@ class PayMayaSDK
 
 	public static function getInstance()
 	{
-		if (!isset(self::instance)) {
+		if (null == self::$instance) {
 			self::$instance = new self();
 		}
 		return self::$instance;
@@ -31,15 +31,35 @@ class PayMayaSDK
 		$this->paymentsEnvironment = $environment;
 	}
 
+	public function getCheckoutAPIKey() 
+	{
+		return $this->checkoutAPIKey;
+	}
+
+	public function getCheckoutEnvironment()
+	{
+		return $this->checkoutEnvironment;
+	}
+
+	public function getPaymentsAPIKey() 
+	{
+		return $this->paymentsAPIKey;
+	}
+
+	public function getPaymentsEnvironment()
+	{
+		return $this->paymentsEnvironment;
+	}
+
 	protected function __construct()
-    {
-    }
+	{
+	}
 
-    private function __clone()
-    {
-    }
+	private function __clone()
+	{
+	}
 
-    private function __wakeup()
-    {
-    }
+	private function __wakeup()
+	{
+	}
 }
