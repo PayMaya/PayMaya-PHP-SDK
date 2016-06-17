@@ -11,5 +11,5 @@ class Item
 	public $description;
 	public $quantity;
 	public $amount;
-	public totalAmount;
+	public $totalAmount;
 }

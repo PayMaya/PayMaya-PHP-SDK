@@ -6,7 +6,7 @@ use PayMaya\Model\Checkout\ItemAmountDetails;
 
 class ItemAmount
 {
-	public $currency;
-	public $value;
+	public $currency = "PHP";
+	public $value = "0.00";
 	public $details;
 }

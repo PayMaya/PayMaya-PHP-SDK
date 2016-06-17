@@ -4,8 +4,8 @@ namespace PayMaya\Model\Checkout;
 
 class Address
 {
-	public $primaryAddressLine;
-	public $secondaryAddressLine;
+	public $line1;
+	public $line2;
 	public $city;
 	public $state;
 	public $zipCode;
