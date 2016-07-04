@@ -12,7 +12,7 @@ class Checkout
 	public $buyer;
 	public $items;
 	public $totalAmount;
-	public $referenceNumber;
+	public $requestReferenceNumber;
 
 	private $apiManager;
 
