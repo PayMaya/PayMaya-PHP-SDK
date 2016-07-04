@@ -33,7 +33,7 @@ $user = new User();
 $itemCheckout->buyer = $user->buyerInfo();
 $itemCheckout->items = array($item);
 $itemCheckout->totalAmount = $itemAmount;
-$itemCheckout->requestReferenceNumber = "123456789";
+$itemCheckout->referenceNumber = "123456789";
 $itemCheckout->execute();
 
 echo "Checkout ID: " . $itemCheckout->getCheckoutId() . "\n";
