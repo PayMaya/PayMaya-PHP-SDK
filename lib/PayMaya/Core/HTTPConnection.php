@@ -48,10 +48,8 @@ class HTTPConnection
 			curl_close($session);
 			throw $exception;
 		}
-
-		$requestHeaders = curl_getinfo($session, CURLINFO_HEADER_OUT);
+		
 		$responseHeaderSize = strlen($result) - curl_getinfo($session, CURLINFO_SIZE_DOWNLOAD);
-		$responseHeaders = substr($result, 0, $responseHeaderSize);
 		$result = substr($result, $responseHeaderSize);
 
 		curl_close($session);
