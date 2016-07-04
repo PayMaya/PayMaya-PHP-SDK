@@ -9,65 +9,52 @@ class HTTPConnection
 	public function __construct($httpConfig)
 	{
 		if (!function_exists("curl_init")) {
-			throw new Exception("Curl module is not available on this system");
+			throw new Exception("curl module is not available in this machine");
 		}
 		$this->httpConfig = $httpConfig;
 	}
 
-	private function getHttpHeaders()
-	{
-
-		$ret = array();
-		foreach ($this->httpConfig->getHeaders() as $k => $v) {
-			$ret[] = "$k: $v";
-		}
-		return $ret;
-	}
-
 	public function execute($data)
 	{
-		$ch = curl_init($this->httpConfig->getUrl());
-		$options = $this->httpConfig->getCurlOptions();
-		if(empty($options[CURLOPT_HTTPHEADER])) {
-			unset ($options[CURLOPT_HTTPHEADER]);
-		}
-		curl_setopt_array($ch, $options);
-		curl_setopt($ch, CURLOPT_URL, $this->httpConfig->getUrl());
-		curl_setopt($ch, CURLOPT_HEADER, true);
-		curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $this->getHttpHeaders());
+		$session = curl_init($this->httpConfig->getUrl());
+		curl_setopt_array($session, $this->httpConfig->getCurlOptions());
+		curl_setopt($session, CURLOPT_URL, $this->httpConfig->getUrl());
+		curl_setopt($session, CURLOPT_HEADER, true);
+		curl_setopt($session, CURLINFO_HEADER_OUT, true);
+		curl_setopt($session, CURLOPT_HTTPHEADER, $this->httpConfig->getHttpHeaders());
 
 		switch ($this->httpConfig->getMethod()) {
 			case 'POST':
-				curl_setopt($ch, CURLOPT_POST, true);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+				curl_setopt($session, CURLOPT_POST, true);
+				curl_setopt($session, CURLOPT_POSTFIELDS, $data);
 				break;
 			case 'PUT':
-			case 'PATCH':
+				curl_setopt($session, CURLOPT_POSTFIELDS, $data);
+				break;
 			case 'DELETE':
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+				curl_setopt($session, CURLOPT_POSTFIELDS, $data);
 				break;
 		}
 
 		if ($this->httpConfig->getMethod() != NULL) {
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->httpConfig->getMethod());
+			curl_setopt($session, CURLOPT_CUSTOMREQUEST, $this->httpConfig->getMethod());
 		}
 
-		$result = curl_exec($ch);
-		$httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$result = curl_exec($session);
+		$httpStatus = curl_getinfo($session, CURLINFO_HTTP_CODE);
 
-		if (curl_errno($ch)) {
-			$ex = new Exception("Error API call");
-			curl_close($ch);
-			throw $ex;
+		if (curl_errno($session)) {
+			$exception = new Exception("Error API call");
+			curl_close($session);
+			throw $exception;
 		}
 
-		$requestHeaders = curl_getinfo($ch, CURLINFO_HEADER_OUT);
-		$responseHeaderSize = strlen($result) - curl_getinfo($ch, CURLINFO_SIZE_DOWNLOAD);
+		$requestHeaders = curl_getinfo($session, CURLINFO_HEADER_OUT);
+		$responseHeaderSize = strlen($result) - curl_getinfo($session, CURLINFO_SIZE_DOWNLOAD);
 		$responseHeaders = substr($result, 0, $responseHeaderSize);
 		$result = substr($result, $responseHeaderSize);
 
-		curl_close($ch);
+		curl_close($session);
 
 		return $result;
 	}

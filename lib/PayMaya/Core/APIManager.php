@@ -26,14 +26,13 @@ class APIManager
 				$checkoutURL = Constants::CHECKOUT_SANDBOX_URL;
 		}
 
-		$httpConfig = new HTTPConfig($checkoutURL . "/v1/checkouts", "POST");
-		$httpConfig->setHeaders(
-			array(
-				"Content-Type" => "application/json",
-				"Authorization" => "Basic " . $authorizationToken
-			)
-		);
-
+		$httpConfig = new HTTPConfig($checkoutURL . "/v1/checkouts", 
+									 "POST",
+									 array(
+										"Content-Type" => "application/json",
+										"Authorization" => "Basic " . $authorizationToken
+									));
+		
 		$httpConnection = new HTTPConnection($httpConfig);
 		$payload = json_encode($checkoutInformation);
 		$response = $httpConnection->execute($payload);
