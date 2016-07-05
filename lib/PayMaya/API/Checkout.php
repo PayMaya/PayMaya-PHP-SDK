@@ -6,6 +6,8 @@ use PayMaya\Core\APIManager;
 
 class Checkout
 {
+	private $apiManager;
+
 	private $id;
 	private $url;
 	private $status;
@@ -18,8 +20,6 @@ class Checkout
 	public $totalAmount;
 	public $requestReferenceNumber;
 	public $redirectUrl;
-
-	private $apiManager;
 
 	public function __construct()
 	{
