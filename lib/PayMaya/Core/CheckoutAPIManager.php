@@ -110,4 +110,54 @@ class CheckoutAPIManager
 	}
 
 	// Webhook
+
+	public function retrieveWebhook()
+	{
+		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/webhooks", 
+									 "GET",
+									 $this->httpHeaders
+									 );
+		$httpConnection = new HTTPConnection($httpConfig);
+		$response = $httpConnection->execute(null);
+		return $response;
+	}
+
+	public function registerWebhook($webhookInformation)
+	{
+		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/webhooks", 
+									 "POST",
+									 $this->httpHeaders
+									 );
+		$httpConnection = new HTTPConnection($httpConfig);
+		$payload = json_encode($webhookInformation);
+		$response = $httpConnection->execute($payload);
+		return $response;
+	}
+
+	public function updateWebhook($webhookId, $webhookInformation)
+	{
+		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/webhooks/" . $webhookId, 
+									 "PUT",
+									 $this->httpHeaders
+									 );
+		$httpConnection = new HTTPConnection($httpConfig);
+		$payload = json_encode($webhookInformation);
+		$response = $httpConnection->execute($payload);
+		return $response;
+	}
+
+	public function deleteWebhook($webhookId)
+	{
+		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/webhooks/" . $webhookId, 
+									 "DELETE",
+									 $this->httpHeaders
+									 );
+		$httpConnection = new HTTPConnection($httpConfig);
+		$response = $httpConnection->execute(null);
+		return $response;
+	}
 }

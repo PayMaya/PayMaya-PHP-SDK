@@ -30,9 +30,11 @@ class HTTPConnection
 				curl_setopt($session, CURLOPT_POSTFIELDS, $data);
 				break;
 			case "PUT":
+				curl_setopt($session, CURLOPT_CUSTOMREQUEST, "PUT");
 				curl_setopt($session, CURLOPT_POSTFIELDS, $data);
 				break;
 			case "DELETE":
+				curl_setopt($session, CURLOPT_CUSTOMREQUEST, "DELETE");
 				curl_setopt($session, CURLOPT_POSTFIELDS, $data);
 				break;
 		}
