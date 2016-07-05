@@ -55,4 +55,17 @@ class CheckoutAPIManager
 		$response = $httpConnection->execute($payload);
 		return $response;
 	}
+
+	public function retrieveCheckout($checkoutId) 
+	{
+		$authorizationToken = $this->getAuthorizationToken($this->secretAPIKey);
+		$this->httpHeaders["Authorization"] = "Basic " . $authorizationToken;
+		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/checkouts/" . $checkoutId, 
+									 "GET",
+									 $this->httpHeaders
+									 );
+		$httpConnection = new HTTPConnection($httpConfig);
+		$response = $httpConnection->execute(null);
+		return $response;
+	}
 }

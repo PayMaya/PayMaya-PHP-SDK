@@ -40,6 +40,8 @@ class Checkout extends PayMayaModel
 
 	public function retrieve()
 	{
+		$response = $this->apiManager->retrieveCheckout($this->id);
 
+		return $response;
 	}
 }

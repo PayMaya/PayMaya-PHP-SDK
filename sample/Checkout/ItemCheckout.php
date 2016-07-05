@@ -8,7 +8,9 @@ use PayMaya\Model\Checkout\Item;
 use PayMaya\Model\Checkout\ItemAmount;
 use PayMaya\Model\Checkout\ItemAmountDetails;
 
-PayMayaSDK::getInstance()->initCheckout("pk-iaioBC2pbY6d3BVRSebsJxghSHeJDW4n6navI7tYdrN", "", "SANDBOX");
+PayMayaSDK::getInstance()->initCheckout("pk-iaioBC2pbY6d3BVRSebsJxghSHeJDW4n6navI7tYdrN", 
+										"sk-uh4ZFfx9i0rZpKN6CxJ826nVgJ4saGGVAH9Hk7WrY6Q", 
+										"SANDBOX");
 
 // Item
 $itemAmountDetails = new ItemAmountDetails();
@@ -40,6 +42,7 @@ $itemCheckout->redirectUrl = array(
     "cancel" => "https://shop.com/cancel"
 	);
 $itemCheckout->initiate();
+$itemCheckout->retrieve();
 
 echo "Checkout ID: " . $itemCheckout->id . "\n";
 echo "Checkout URL: " . $itemCheckout->url . "\n";
