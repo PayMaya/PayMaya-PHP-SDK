@@ -12,6 +12,8 @@ class Customization
 	public $customTitle;
 	public $colorScheme;
 
+	private $apiManager;
+
 	public function __construct()
 	{
 		$this->apiManager = new CheckoutAPIManager();
@@ -21,7 +23,6 @@ class Customization
 	{
 		$customizationInformation = json_decode(json_encode($this), true);
 		$response = $this->apiManager->setCustomization($customizationInformation);
-		$responseArr = json_decode($response, true);
 		return $response;
 	}
 
@@ -42,7 +43,6 @@ class Customization
 	public function remove()
 	{
 		$response = $this->apiManager->removeCustomization();
-		$responseArr = json_decode($response, true);
 		
 		$this->logoUrl = null;
 		$this->iconUrl = null;
