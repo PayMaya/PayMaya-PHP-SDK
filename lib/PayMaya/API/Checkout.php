@@ -3,9 +3,8 @@
 namespace PayMaya\API;
 
 use PayMaya\Core\CheckoutAPIManager;
-use PayMaya\Model\PayMayaModel;
 
-class Checkout extends PayMayaModel
+class Checkout
 {
 	public $id;
 	public $url;

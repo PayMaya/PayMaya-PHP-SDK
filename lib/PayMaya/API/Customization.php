@@ -2,6 +2,8 @@
 
 namespace PayMaya\API;
 
+use PayMaya\Core\CheckoutAPIManager;
+
 class Customization
 {
 	public $logoUrl;
