@@ -37,15 +37,17 @@ class CheckoutAPIManager
 		return $baseUrl;
 	}
 
-	private function getAuthorizationToken($apiKey)
+	private function useBasicAuthWithAPIKey($apiKey)
 	{
-		return base64_encode($apiKey . ":");
+		$authorizationToken = base64_encode($apiKey . ":");
+		$this->httpHeaders["Authorization"] = "Basic " . $authorizationToken;
 	}
+
+	// Checkout
 
 	public function initiateCheckout($checkoutInformation) 
 	{
-		$authorizationToken = $this->getAuthorizationToken($this->publicAPIKey);
-		$this->httpHeaders["Authorization"] = "Basic " . $authorizationToken;
+		$this->useBasicAuthWithAPIKey($publicAPIKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/checkouts", 
 									 "POST",
 									 $this->httpHeaders
@@ -58,8 +60,7 @@ class CheckoutAPIManager
 
 	public function retrieveCheckout($checkoutId) 
 	{
-		$authorizationToken = $this->getAuthorizationToken($this->secretAPIKey);
-		$this->httpHeaders["Authorization"] = "Basic " . $authorizationToken;
+		$this->useBasicAuthWithAPIKey($secretAPIKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/checkouts/" . $checkoutId, 
 									 "GET",
 									 $this->httpHeaders
@@ -68,4 +69,45 @@ class CheckoutAPIManager
 		$response = $httpConnection->execute(null);
 		return $response;
 	}
+
+	// Customization
+
+	public function setCustomization($customizationInformation)
+	{
+		$this->useBasicAuthWithAPIKey($secretAPIKey);
+		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/customizations", 
+									 "POST",
+									 $this->httpHeaders
+									 );
+		$httpConnection = new HTTPConnection($httpConfig);
+		$payload = json_encode($customizationInformation);
+		$response = $httpConnection->execute($payload);
+		return $response;
+	}
+
+	public function getCustomization()
+	{
+		$this->useBasicAuthWithAPIKey($secretAPIKey);
+		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/customizations", 
+									 "GET",
+									 $this->httpHeaders
+									 );
+		$httpConnection = new HTTPConnection($httpConfig);
+		$response = $httpConnection->execute(null);
+		return $response;
+	}
+
+	public function removeCustomization()
+	{
+		$this->useBasicAuthWithAPIKey($secretAPIKey);
+		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/customizations", 
+									 "DELETE",
+									 $this->httpHeaders
+									 );
+		$httpConnection = new HTTPConnection($httpConfig);
+		$response = $httpConnection->execute(null);
+		return $response;
+	}
+
+	// Webhook
 }
