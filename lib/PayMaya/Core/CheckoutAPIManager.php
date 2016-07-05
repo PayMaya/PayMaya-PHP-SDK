@@ -47,7 +47,7 @@ class CheckoutAPIManager
 
 	public function initiateCheckout($checkoutInformation) 
 	{
-		$this->useBasicAuthWithAPIKey($publicAPIKey);
+		$this->useBasicAuthWithAPIKey($this->publicAPIKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/checkouts", 
 									 "POST",
 									 $this->httpHeaders
@@ -60,7 +60,7 @@ class CheckoutAPIManager
 
 	public function retrieveCheckout($checkoutId) 
 	{
-		$this->useBasicAuthWithAPIKey($secretAPIKey);
+		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/checkouts/" . $checkoutId, 
 									 "GET",
 									 $this->httpHeaders
@@ -74,7 +74,7 @@ class CheckoutAPIManager
 
 	public function setCustomization($customizationInformation)
 	{
-		$this->useBasicAuthWithAPIKey($secretAPIKey);
+		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/customizations", 
 									 "POST",
 									 $this->httpHeaders
@@ -87,7 +87,7 @@ class CheckoutAPIManager
 
 	public function getCustomization()
 	{
-		$this->useBasicAuthWithAPIKey($secretAPIKey);
+		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/customizations", 
 									 "GET",
 									 $this->httpHeaders
@@ -99,7 +99,7 @@ class CheckoutAPIManager
 
 	public function removeCustomization()
 	{
-		$this->useBasicAuthWithAPIKey($secretAPIKey);
+		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/customizations", 
 									 "DELETE",
 									 $this->httpHeaders
