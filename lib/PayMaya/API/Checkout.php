@@ -2,7 +2,7 @@
 
 namespace PayMaya\API;
 
-use PayMaya\Core\APIManager;
+use PayMaya\Core\CheckoutAPIManager;
 
 class Checkout
 {
@@ -23,13 +23,13 @@ class Checkout
 
 	public function __construct()
 	{
-		$this->apiManager = new APIManager();
+		$this->apiManager = new CheckoutAPIManager();
 	}
 
 	public function initiate()
 	{
 		$checkoutInformation = json_decode(json_encode($this), true);
-		$response = $this->apiManager->executeCheckout($checkoutInformation);
+		$response = $this->apiManager->initiateCheckout($checkoutInformation);
 		$responseArr = json_decode($response, true);
 
 		$this->id = $responseArr["checkoutId"];
