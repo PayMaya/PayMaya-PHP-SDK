@@ -19,10 +19,9 @@ class Customization
 
 	public function set()
 	{
-		$customizationInfo = json_decode(json_encode($this), true);
+		$customizationInformation = json_decode(json_encode($this), true);
 		$response = $this->apiManager->setCustomization($customizationInformation);
 		$responseArr = json_decode($response, true);
-		
 		return $response;
 	}
 
@@ -30,6 +29,12 @@ class Customization
 	{
 		$response = $this->apiManager->getCustomization();
 		$responseArr = json_decode($response, true);
+
+		$this->logoUrl = $responseArr["logoUrl"];
+		$this->iconUrl = $responseArr["iconUrl"];
+		$this->appleTouchIconUrl = $responseArr["appleTouchIconUrl"];
+		$this->customTitle = $responseArr["customTitle"];
+		$this->colorScheme = $responseArr["colorScheme"];
 		
 		return $response;
 	}
@@ -39,6 +44,12 @@ class Customization
 		$response = $this->apiManager->removeCustomization();
 		$responseArr = json_decode($response, true);
 		
+		$this->logoUrl = null;
+		$this->iconUrl = null;
+		$this->appleTouchIconUrl = null;
+		$this->customTitle = null;
+		$this->colorScheme = null;
+
 		return $response;
 	}
 }
