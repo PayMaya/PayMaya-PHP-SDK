@@ -1,6 +1,7 @@
 <?php
 
 namespace PayMaya\Core;
+use Exception;
 
 class HTTPConnection
 {
@@ -24,14 +25,14 @@ class HTTPConnection
 		curl_setopt($session, CURLOPT_HTTPHEADER, $this->httpConfig->getHttpHeaders());
 
 		switch ($this->httpConfig->getMethod()) {
-			case 'POST':
+			case "POST":
 				curl_setopt($session, CURLOPT_POST, true);
 				curl_setopt($session, CURLOPT_POSTFIELDS, $data);
 				break;
-			case 'PUT':
+			case "PUT":
 				curl_setopt($session, CURLOPT_POSTFIELDS, $data);
 				break;
-			case 'DELETE':
+			case "DELETE":
 				curl_setopt($session, CURLOPT_POSTFIELDS, $data);
 				break;
 		}
@@ -40,7 +41,7 @@ class HTTPConnection
 			curl_setopt($session, CURLOPT_CUSTOMREQUEST, $this->httpConfig->getMethod());
 		}
 
-		$result = curl_exec($session);
+		$response = curl_exec($session);
 		$httpStatus = curl_getinfo($session, CURLINFO_HTTP_CODE);
 
 		if (curl_errno($session)) {
@@ -49,11 +50,9 @@ class HTTPConnection
 			throw $exception;
 		}
 		
-		$responseHeaderSize = strlen($result) - curl_getinfo($session, CURLINFO_SIZE_DOWNLOAD);
-		$result = substr($result, $responseHeaderSize);
-
+		$responseHeaderSize = strlen($response) - curl_getinfo($session, CURLINFO_SIZE_DOWNLOAD);
+		$result = substr($response, $responseHeaderSize);
 		curl_close($session);
-
 		return $result;
 	}
 }
