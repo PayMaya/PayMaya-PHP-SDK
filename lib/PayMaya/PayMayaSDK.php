@@ -6,9 +6,12 @@ class PayMayaSDK
 {
 	private static $instance;
 
-	private $checkoutAPIKey;
+	private $checkoutPublicAPIKey;
+	private $checkoutSecretAPIKey;
 	private $checkoutEnvironment;
-	private $paymentsAPIKey;
+
+	private $paymentsPublicAPIKey;
+	private $paymentsSecretAPIKey;
 	private $paymentsEnvironment;
 
 	public static function getInstance()
@@ -19,21 +22,28 @@ class PayMayaSDK
 		return self::$instance;
 	}
 
-	public function initCheckout($apiKey = null, $environment = "SANDBOX")
+	public function initCheckout($publicAPIKey = null, $secretAPIKey = null, $environment = "SANDBOX")
 	{
-		$this->checkoutAPIKey = $apiKey;
+		$this->checkoutPublicAPIKey = $publicAPIKey;
+		$this->checkoutSecretAPIKey = $secretAPIKey;
 		$this->checkoutEnvironment = $environment;
 	}
 
-	public function initPayments($apiKey = null, $environment = "SANDBOX")
+	public function initPayments($publicAPIKey = null, $secretAPIKey = null, $environment = "SANDBOX")
 	{
-		$this->paymentsAPIKey = $apiKey;
+		$this->paymentsPublicAPIKey = $publicAPIKey;
+		$this->paymentsSecretAPIKey = $secretAPIKey;
 		$this->paymentsEnvironment = $environment;
 	}
 
-	public function getCheckoutAPIKey() 
+	public function getCheckoutPublicAPIKey() 
 	{
-		return $this->checkoutAPIKey;
+		return $this->checkoutPublicAPIKey;
+	}
+
+	public function getCheckoutSecretAPIKey() 
+	{
+		return $this->checkoutSecretAPIKey;
 	}
 
 	public function getCheckoutEnvironment()
@@ -41,9 +51,14 @@ class PayMayaSDK
 		return $this->checkoutEnvironment;
 	}
 
-	public function getPaymentsAPIKey() 
+	public function getPaymentsPublicAPIKey() 
 	{
-		return $this->paymentsAPIKey;
+		return $this->paymentsPublicAPIKey;
+	}
+
+	public function getPaymentsSecretAPIKey() 
+	{
+		return $this->paymentsSecretAPIKey;
 	}
 
 	public function getPaymentsEnvironment()
