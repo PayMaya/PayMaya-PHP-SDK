@@ -34,7 +34,12 @@ $itemCheckout->buyer = $user->buyerInfo();
 $itemCheckout->items = array($item);
 $itemCheckout->totalAmount = $itemAmount;
 $itemCheckout->requestReferenceNumber = "123456789";
-$itemCheckout->execute();
+$itemCheckout->redirectUrl = array(
+	"success" => "https://shop.com/success",
+    "failure" => "https://shop.com/failure",
+    "cancel" => "https://shop.com/cancel"
+	);
+$itemCheckout->initiate();
 
-echo "Checkout ID: " . $itemCheckout->getCheckoutId() . "\n";
-echo "Checkout URL: " . $itemCheckout->getRedirectUrl() . "\n";
+echo "Checkout ID: " . $itemCheckout->getId() . "\n";
+echo "Checkout URL: " . $itemCheckout->getUrl() . "\n";
