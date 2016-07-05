@@ -3,23 +3,23 @@
 namespace PayMaya\API;
 
 use PayMaya\Core\CheckoutAPIManager;
+use PayMaya\Model\PayMayaModel;
 
-class Checkout
+class Checkout extends PayMayaModel
 {
-	private $apiManager;
-
-	private $id;
-	private $url;
-	private $status;
-	private $paymentType;
-	private $paymentStatus;
-	private $metadata;
-
+	public $id;
+	public $url;
 	public $buyer;
 	public $items;
 	public $totalAmount;
 	public $requestReferenceNumber;
 	public $redirectUrl;
+	public $status;
+	public $paymentType;
+	public $paymentStatus;
+	public $metadata;
+
+	private $apiManager;
 
 	public function __construct()
 	{
@@ -41,15 +41,5 @@ class Checkout
 	public function retrieve()
 	{
 
-	}
-
-	public function getId() 
-	{
-		return $this->id;
-	}
-
-	public function getUrl() 
-	{
-		return $this->url;
 	}
 }

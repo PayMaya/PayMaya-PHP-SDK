@@ -41,5 +41,5 @@ $itemCheckout->redirectUrl = array(
 	);
 $itemCheckout->initiate();
 
-echo "Checkout ID: " . $itemCheckout->getId() . "\n";
-echo "Checkout URL: " . $itemCheckout->getUrl() . "\n";
+echo "Checkout ID: " . $itemCheckout->id . "\n";
+echo "Checkout URL: " . $itemCheckout->url . "\n";
