@@ -41,7 +41,7 @@ $itemCheckout->redirectUrl = array(
     "failure" => "https://shop.com/failure",
     "cancel" => "https://shop.com/cancel"
 	);
-$itemCheckout->initiate();
+$itemCheckout->execute();
 $itemCheckout->retrieve();
 
 echo "Checkout ID: " . $itemCheckout->id . "\n";

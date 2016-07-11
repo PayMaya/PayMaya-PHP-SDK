@@ -9,7 +9,7 @@ class Webhook
 	const CHECKOUT_SUCCESS = "CHECKOUT_SUCCESS";
 	const CHECKOUT_FAILURE = "CHECKOUT_FAILURE";
 
-	// public $id;
+	public $id;
 	public $name;
 	public $callbackUrl;
 

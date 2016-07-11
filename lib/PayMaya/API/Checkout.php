@@ -25,7 +25,7 @@ class Checkout
 		$this->apiManager = new CheckoutAPIManager();
 	}
 
-	public function initiate()
+	public function execute()
 	{
 		$checkoutInformation = json_decode(json_encode($this), true);
 		$response = $this->apiManager->initiateCheckout($checkoutInformation);
