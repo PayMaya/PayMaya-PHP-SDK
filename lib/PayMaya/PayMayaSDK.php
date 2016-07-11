@@ -6,12 +6,12 @@ class PayMayaSDK
 {
 	private static $instance;
 
-	private $checkoutPublicAPIKey;
-	private $checkoutSecretAPIKey;
+	private $checkoutPublicApiKey;
+	private $checkoutSecretApiKey;
 	private $checkoutEnvironment;
 
-	private $paymentsPublicAPIKey;
-	private $paymentsSecretAPIKey;
+	private $paymentsPublicApiKey;
+	private $paymentsSecretApiKey;
 	private $paymentsEnvironment;
 
 	public static function getInstance()
@@ -22,28 +22,29 @@ class PayMayaSDK
 		return self::$instance;
 	}
 
-	public function initCheckout($publicAPIKey = null, $secretAPIKey = null, $environment = "SANDBOX")
+	// camel case
+	public function initCheckout($publicApiKey = null, $secretApiKey = null, $environment = "SANDBOX")
 	{
-		$this->checkoutPublicAPIKey = $publicAPIKey;
-		$this->checkoutSecretAPIKey = $secretAPIKey;
+		$this->checkoutPublicApiKey = $publicApiKey;
+		$this->checkoutSecretApiKey = $secretApiKey;
 		$this->checkoutEnvironment = $environment;
 	}
 
-	public function initPayments($publicAPIKey = null, $secretAPIKey = null, $environment = "SANDBOX")
+	public function initPayments($publicApiKey = null, $secretApiKey = null, $environment = "SANDBOX")
 	{
-		$this->paymentsPublicAPIKey = $publicAPIKey;
-		$this->paymentsSecretAPIKey = $secretAPIKey;
+		$this->paymentsPublicApiKey = $publicApiKey;
+		$this->paymentsSecretApiKey = $secretApiKey;
 		$this->paymentsEnvironment = $environment;
 	}
 
-	public function getCheckoutPublicAPIKey() 
+	public function getCheckoutPublicApiKey() 
 	{
-		return $this->checkoutPublicAPIKey;
+		return $this->checkoutPublicApiKey;
 	}
 
-	public function getCheckoutSecretAPIKey() 
+	public function getCheckoutSecretApiKey() 
 	{
-		return $this->checkoutSecretAPIKey;
+		return $this->checkoutSecretApiKey;
 	}
 
 	public function getCheckoutEnvironment()
@@ -51,14 +52,14 @@ class PayMayaSDK
 		return $this->checkoutEnvironment;
 	}
 
-	public function getPaymentsPublicAPIKey() 
+	public function getPaymentsPublicApiKey() 
 	{
-		return $this->paymentsPublicAPIKey;
+		return $this->paymentsPublicApiKey;
 	}
 
-	public function getPaymentsSecretAPIKey() 
+	public function getPaymentsSecretApiKey() 
 	{
-		return $this->paymentsSecretAPIKey;
+		return $this->paymentsSecretApiKey;
 	}
 
 	public function getPaymentsEnvironment()

@@ -9,16 +9,16 @@ use PayMaya\Core\Constants;
 
 class CheckoutAPIManager
 {
-	private $publicAPIKey;
-	private $secretAPIKey;
+	private $publicApiKey;
+	private $secretApiKey;
 	private $environment;
 	private $baseUrl;
 	private $httpHeaders;
 
 	public function __construct()
 	{
-		$this->publicAPIKey = PayMayaSDK::getInstance()->getCheckoutPublicAPIKey();
-		$this->secretAPIKey = PayMayaSDK::getInstance()->getCheckoutSecretAPIKey();
+		$this->publicApiKey = PayMayaSDK::getInstance()->getCheckoutPublicApiKey();
+		$this->secretApiKey = PayMayaSDK::getInstance()->getCheckoutSecretApiKey();
 		$this->environment = PayMayaSDK::getInstance()->getCheckoutEnvironment();
 		$this->baseUrl = $this->getBaseUrl();
 		$this->httpHeaders = array("Content-Type" => "application/json");
@@ -37,7 +37,7 @@ class CheckoutAPIManager
 		return $baseUrl;
 	}
 
-	private function useBasicAuthWithAPIKey($apiKey)
+	private function useBasicAuthWithApiKey($apiKey)
 	{
 		$authorizationToken = base64_encode($apiKey . ":");
 		$this->httpHeaders["Authorization"] = "Basic " . $authorizationToken;
@@ -47,7 +47,7 @@ class CheckoutAPIManager
 
 	public function initiateCheckout($checkoutInformation) 
 	{
-		$this->useBasicAuthWithAPIKey($this->publicAPIKey);
+		$this->useBasicAuthWithApiKey($this->publicApiKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/checkouts", 
 									 "POST",
 									 $this->httpHeaders
@@ -60,7 +60,7 @@ class CheckoutAPIManager
 
 	public function retrieveCheckout($checkoutId) 
 	{
-		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$this->useBasicAuthWithApiKey($this->secretApiKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/checkouts/" . $checkoutId, 
 									 "GET",
 									 $this->httpHeaders
@@ -74,7 +74,7 @@ class CheckoutAPIManager
 
 	public function setCustomization($customizationInformation)
 	{
-		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$this->useBasicAuthWithApiKey($this->secretApiKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/customizations", 
 									 "POST",
 									 $this->httpHeaders
@@ -87,7 +87,7 @@ class CheckoutAPIManager
 
 	public function getCustomization()
 	{
-		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$this->useBasicAuthWithApiKey($this->secretApiKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/customizations", 
 									 "GET",
 									 $this->httpHeaders
@@ -99,7 +99,7 @@ class CheckoutAPIManager
 
 	public function removeCustomization()
 	{
-		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$this->useBasicAuthWithApiKey($this->secretApiKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/customizations", 
 									 "DELETE",
 									 $this->httpHeaders
@@ -113,7 +113,7 @@ class CheckoutAPIManager
 
 	public function retrieveWebhook()
 	{
-		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$this->useBasicAuthWithApiKey($this->secretApiKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/webhooks", 
 									 "GET",
 									 $this->httpHeaders
@@ -125,7 +125,7 @@ class CheckoutAPIManager
 
 	public function registerWebhook($webhookInformation)
 	{
-		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$this->useBasicAuthWithApiKey($this->secretApiKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/webhooks", 
 									 "POST",
 									 $this->httpHeaders
@@ -138,7 +138,7 @@ class CheckoutAPIManager
 
 	public function updateWebhook($webhookId, $webhookInformation)
 	{
-		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$this->useBasicAuthWithApiKey($this->secretApiKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/webhooks/" . $webhookId, 
 									 "PUT",
 									 $this->httpHeaders
@@ -151,7 +151,7 @@ class CheckoutAPIManager
 
 	public function deleteWebhook($webhookId)
 	{
-		$this->useBasicAuthWithAPIKey($this->secretAPIKey);
+		$this->useBasicAuthWithApiKey($this->secretApiKey);
 		$httpConfig = new HTTPConfig($this->baseUrl . "/v1/webhooks/" . $webhookId, 
 									 "DELETE",
 									 $this->httpHeaders
