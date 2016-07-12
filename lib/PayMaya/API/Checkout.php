@@ -15,7 +15,10 @@ class Checkout
 	public $redirectUrl;
 	public $status;
 	public $paymentType;
+	public $transactionReferenceNumber;
+	public $receiptNumber;
 	public $paymentStatus;
+	public $voidStatus;
 	public $metadata;
 
 	private $apiManager;
@@ -40,6 +43,15 @@ class Checkout
 	public function retrieve()
 	{
 		$response = $this->apiManager->retrieveCheckout($this->id);
+		$responseArr = json_decode($response, true);
+
+		$this->status = !empty($responseArr["status"]) ? $responseArr["status"] : null;
+		$this->paymentType = !empty($responseArr["paymentType"]) ? $responseArr["paymentType"] : null;
+		$this->transactionReferenceNumber = !empty($responseArr["transactionReferenceNumber"]) ? $responseArr["transactionReferenceNumber"] : null;
+		$this->receiptNumber = !empty($responseArr["receiptNumber"]) ? $responseArr["receiptNumber"] : null;
+		$this->paymentStatus = !empty($responseArr["paymentStatus"]) ? $responseArr["paymentStatus"] : null;
+		$this->voidStatus = !empty($responseArr["voidStatus"]) ? $responseArr["voidStatus"] : null;
+		$this->metadata = !empty($responseArr["metadata"]) ? $responseArr["metadata"] : null;
 
 		return $response;
 	}
