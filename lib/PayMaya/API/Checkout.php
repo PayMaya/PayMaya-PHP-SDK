@@ -45,13 +45,13 @@ class Checkout
 		$response = $this->apiManager->retrieveCheckout($this->id);
 		$responseArr = json_decode($response, true);
 
-		$this->status = !empty($responseArr["status"]) ? $responseArr["status"] : null;
-		$this->paymentType = !empty($responseArr["paymentType"]) ? $responseArr["paymentType"] : null;
-		$this->transactionReferenceNumber = !empty($responseArr["transactionReferenceNumber"]) ? $responseArr["transactionReferenceNumber"] : null;
-		$this->receiptNumber = !empty($responseArr["receiptNumber"]) ? $responseArr["receiptNumber"] : null;
-		$this->paymentStatus = !empty($responseArr["paymentStatus"]) ? $responseArr["paymentStatus"] : null;
-		$this->voidStatus = !empty($responseArr["voidStatus"]) ? $responseArr["voidStatus"] : null;
-		$this->metadata = !empty($responseArr["metadata"]) ? $responseArr["metadata"] : null;
+		$this->status = $responseArr["status"];
+		$this->paymentType = $responseArr["paymentType"];
+		$this->transactionReferenceNumber = $responseArr["transactionReferenceNumber"];
+		$this->receiptNumber = $responseArr["receiptNumber"];
+		$this->paymentStatus = $responseArr["paymentStatus"];
+		$this->voidStatus = $responseArr["voidStatus"];
+		$this->metadata = $responseArr["metadata"];
 
 		return $response;
 	}
