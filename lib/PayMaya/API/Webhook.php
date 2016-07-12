@@ -64,9 +64,9 @@ class Webhook
 	{
 		$response = $this->apiManager->deleteWebhook($this->id);
 
-		$id = null;
-		$name = null;
-		$callbackUrl = null;
+		$this->id = null;
+		$this->name = null;
+		$this->callbackUrl = null;
 
 		return $response;
 	}
