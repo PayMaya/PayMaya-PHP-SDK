@@ -208,7 +208,7 @@ $successWebhook->update();
 // $successWebhook->callbackUrl = "http://shop.someserver.com/successUpdated"
 ```
 
-* Deleate webhook - Used to delete an existing webhook. You cannot undo this action.
+* Delete webhook - Used to delete an existing webhook. You cannot undo this action.
 ```
 $successWebhook->delete();
 ```
