@@ -53,6 +53,7 @@ require __DIR__  . '/vendor/autoload.php';
 // Use below for direct download installation
 // require __DIR__  . '/PayMaya-PHP-SDK/autoload.php';
 ```
+
 2. Initialize SDK with public-facing API key, secret API key, and the intended environment ("SANDBOX" or "PRODUCTION)
 ```
 <?php
@@ -124,8 +125,65 @@ $itemCheckout->retrieve();
 ```
 
 #### _Customization_
+##### 1. Create Customization object
+```
+<?php
+$shopCustomization = new Customization();
+$shopCustomization->logoUrl = "https://cdn.paymaya.com/production/checkout_api/customization_example/yourlogo.svg";
+$shopCustomization->iconUrl = "https://cdn.paymaya.com/production/checkout_api/customization_example/youricon.ico";
+$shopCustomization->appleTouchIconUrl = "https://cdn.paymaya.com/production/checkout_api/customization_example/youricon_ios.ico";
+$shopCustomization->customTitle = "Checkout Page Title";
+$shopCustomization->colorScheme = "#368d5c";
+```
 
+##### 2. Customization methods
+* Set Customization - Used to set a merchant's checkout page customization.
+```
+$shopCustomization->set();
 
+echo "Logo URL: " . $shopCustomization->logoUrl . "\n";
+// https://cdn.paymaya.com/production/checkout_api/customization_example/yourlogo.svg
+echo "Icon URL: " . $shopCustomization->iconUrl . "\n";
+// https://cdn.paymaya.com/production/checkout_api/customization_example/youricon.ico
+echo "Apple Touch Icon URL: " . $shopCustomization->appleTouchIconUrl . "\n";
+// https://cdn.paymaya.com/production/checkout_api/customization_example/youricon_ios.ico
+echo "Custom Title: " . $shopCustomization->customTitle . "\n";
+// Checkout Page Title
+echo "Color Scheme: " . $shopCustomization->colorScheme . "\n";
+// #368d5c
+```
+
+* Get Customization - Used to get a merchant's checkout page customization.
+```
+$shopCustomization->get();
+
+echo "Logo URL: " . $shopCustomization->logoUrl . "\n";
+// https://cdn.paymaya.com/production/checkout_api/customization_example/yourlogo.svg
+echo "Icon URL: " . $shopCustomization->iconUrl . "\n";
+// https://cdn.paymaya.com/production/checkout_api/customization_example/youricon.ico
+echo "Apple Touch Icon URL: " . $shopCustomization->appleTouchIconUrl . "\n";
+// https://cdn.paymaya.com/production/checkout_api/customization_example/youricon_ios.ico
+echo "Custom Title: " . $shopCustomization->customTitle . "\n";
+// Checkout Page Title
+echo "Color Scheme: " . $shopCustomization->colorScheme . "\n";
+// #368d5c
+```
+
+* Remove Customization - Used to remove a merchant's checkout page customization.
+```
+$shopCustomization->remove();
+
+echo "Logo URL: " . $shopCustomization->logoUrl . "\n";
+// null
+echo "Icon URL: " . $shopCustomization->iconUrl . "\n";
+// null
+echo "Apple Touch Icon URL: " . $shopCustomization->appleTouchIconUrl . "\n";
+// null
+echo "Custom Title: " . $shopCustomization->customTitle . "\n";
+// null
+echo "Color Scheme: " . $shopCustomization->colorScheme . "\n";
+// null
+```
 
 ## Summary
 * These docs in the SDK include an overview of usage, step-by-step integration instructions, and sample code.
