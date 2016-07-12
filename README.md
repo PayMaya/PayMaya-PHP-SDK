@@ -10,16 +10,17 @@ PayMaya PHP SDK allows your web applications to accept payments from your custom
 * [curl[(http://php.net/manual/en/book.curl.php), [json](http://php.net/manual/en/book.json.php) & [openssl](http://php.net/manual/en/book.openssl.php) extensions must be enabled
 
 Tests
-*phpunit/phpunit: 4.8.*
+* phpunit/phpunit: 4.8.*
 
 
 ## Installation
 
-*Via Composer
+* Via Composer
 ```sh
 composer require PayMaya/PayMaya-SDK:*
 ```
-*Direct Download
+
+* Direct Download
 Download zip file starting with PayMaya-PHP-SDK-*.zip from Releases Section
 
 ## Prerequisites
