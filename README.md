@@ -21,6 +21,7 @@ composer require PayMaya/PayMaya-SDK:*
 ```
 
 * Direct Download
+
 Download zip file starting with PayMaya-PHP-SDK-*.zip from Releases Section
 
 ## Prerequisites
