@@ -23,6 +23,14 @@ class Customization
 	{
 		$customizationInformation = json_decode(json_encode($this), true);
 		$response = $this->apiManager->setCustomization($customizationInformation);
+		$responseArr = json_decode($response, true);
+
+		$this->logoUrl = $responseArr["logoUrl"];
+		$this->iconUrl = $responseArr["iconUrl"];
+		$this->appleTouchIconUrl = $responseArr["appleTouchIconUrl"];
+		$this->customTitle = $responseArr["customTitle"];
+		$this->colorScheme = $responseArr["colorScheme"];
+
 		return $response;
 	}
 
