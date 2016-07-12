@@ -45,7 +45,7 @@ Upon successful integration testing, you can then request for production credent
 
 ## Usage
 
-1. Autoload the SDK. This will include all the files and classes to your autoloader. If you downloaded the SDK using composer, replace PayMaya-PHP-SDK with vendor.
+# 1. Autoload the SDK. This will include all the files and classes to your autoloader. If you downloaded the SDK using composer, replace PayMaya-PHP-SDK with vendor.
 ```
 <?php
 // Used for composer based installation
@@ -54,7 +54,7 @@ require __DIR__  . '/vendor/autoload.php';
 // require __DIR__  . '/PayMaya-PHP-SDK/autoload.php';
 ```
 
-2. Initialize SDK with public-facing API key, secret API key, and the intended environment ("SANDBOX" or "PRODUCTION)
+# 2. Initialize SDK with public-facing API key, secret API key, and the intended environment ("SANDBOX" or "PRODUCTION)
 ```
 <?php
 //
@@ -183,6 +183,39 @@ echo "Custom Title: " . $shopCustomization->customTitle . "\n";
 // null
 echo "Color Scheme: " . $shopCustomization->colorScheme . "\n";
 // null
+```
+
+#### _Webhook_
+
+##### 1. Create Webhook object
+```
+$successWebhook = new Webhook();
+$successWebhook->name = Webhook::CHECKOUT_SUCCESS;
+$successWebhook->callbackUrl = "http://shop.someserver.com/success";
+```
+
+##### 2. Webhook methods
+* Register webhook - Used to register an event-based webhook.
+```
+$successWebhook->register();
+```
+
+* Update webhook - Used to update an existing event-based webhook.
+```
+$successWebhook->callbackUrl .= "Updated";
+$successWebhook->update();
+
+// $successWebhook->callbackUrl = "http://shop.someserver.com/successUpdated"
+```
+
+* Deleate webhook - Used to delete an existing webhook. You cannot undo this action.
+```
+$successWebhook->delete();
+```
+
+* Retrieve webhooks - Used to retrieve the list of merchant registered webhooks.
+```
+Webhook::retrieve();
 ```
 
 ## Summary
