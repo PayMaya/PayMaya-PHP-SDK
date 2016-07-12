@@ -45,7 +45,7 @@ Upon successful integration testing, you can then request for production credent
 
 ## Usage
 
-# 1. Autoload the SDK. This will include all the files and classes to your autoloader. If you downloaded the SDK using composer, replace PayMaya-PHP-SDK with vendor.
+#### 1. Autoload the SDK. This will include all the files and classes to your autoloader. If you downloaded the SDK using composer, replace PayMaya-PHP-SDK with vendor.
 ```
 <?php
 // Used for composer based installation
@@ -54,7 +54,7 @@ require __DIR__  . '/vendor/autoload.php';
 // require __DIR__  . '/PayMaya-PHP-SDK/autoload.php';
 ```
 
-# 2. Initialize SDK with public-facing API key, secret API key, and the intended environment ("SANDBOX" or "PRODUCTION)
+#### 2. Initialize SDK with public-facing API key, secret API key, and the intended environment ("SANDBOX" or "PRODUCTION)
 ```
 <?php
 //
