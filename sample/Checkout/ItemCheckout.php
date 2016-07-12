@@ -38,8 +38,8 @@ $itemCheckout->totalAmount = $itemAmount;
 $itemCheckout->requestReferenceNumber = "123456789";
 $itemCheckout->redirectUrl = array(
 	"success" => "https://shop.com/success",
-    "failure" => "https://shop.com/failure",
-    "cancel" => "https://shop.com/cancel"
+	"failure" => "https://shop.com/failure",
+	"cancel" => "https://shop.com/cancel"
 	);
 $itemCheckout->execute();
 $itemCheckout->retrieve();
