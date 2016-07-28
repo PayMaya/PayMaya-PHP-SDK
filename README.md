@@ -41,8 +41,7 @@ Upon successful integration testing, you can then request for production credent
 ## Usage
 
 #### 1. Autoload the SDK. This will include all the files and classes to your autoloader. If you downloaded the SDK using composer, replace PayMaya-PHP-SDK with vendor.
-```
-<?php
+```php
 // Used for composer based installation
 require __DIR__  . '/vendor/autoload.php';
 // Use below for direct download installation
@@ -50,8 +49,7 @@ require __DIR__  . '/vendor/autoload.php';
 ```
 
 #### 2. Initialize SDK with public-facing API key, secret API key, and the intended environment ("SANDBOX" or "PRODUCTION)
-```
-<?php
+```php
 //
 PayMayaSDK::getInstance()->initCheckout(<PUBLIC_API_KEY>, <SECRET_API_KEY>, <ENVIRONMENT>);
 ```
@@ -59,9 +57,7 @@ PayMayaSDK::getInstance()->initCheckout(<PUBLIC_API_KEY>, <SECRET_API_KEY>, <ENV
 #### _Checkout_
 
 ##### 1. Create Checkout object
-```
-<?php
-
+```php
 // Checkout
 $itemCheckout = new Checkout();
 $user = new User();
@@ -96,7 +92,7 @@ $itemCheckout->redirectUrl = array(
 
 ##### 2. Checkout methods
 * Execute Checkout - Method will assign checkout ID and checkout URL to checkout object. Use the checkout URL to redirect the buyer to Checkout page.
-```
+```php
 $itemCheckout->execute();
 
 echo $itemCheckout->id // Checkout ID
@@ -104,7 +100,7 @@ echo $itemCheckout->url // Checkout URL
 ```
 
 * Retrieve Checkout - Method will assign all available checkout information to the object give checkout ID.
-```
+```php
 $itemCheckout->retrieve();
 
 /* The following properties will be populated
@@ -121,7 +117,7 @@ $itemCheckout->retrieve();
 
 #### _Customization_
 ##### 1. Create Customization object
-```
+```php
 <?php
 $shopCustomization = new Customization();
 $shopCustomization->logoUrl = "https://cdn.paymaya.com/production/checkout_api/customization_example/yourlogo.svg";
@@ -133,7 +129,7 @@ $shopCustomization->colorScheme = "#368d5c";
 
 ##### 2. Customization methods
 * Set Customization - Used to set a merchant's checkout page customization.
-```
+```php
 $shopCustomization->set();
 
 echo "Logo URL: " . $shopCustomization->logoUrl . "\n";
@@ -149,7 +145,7 @@ echo "Color Scheme: " . $shopCustomization->colorScheme . "\n";
 ```
 
 * Get Customization - Used to get a merchant's checkout page customization.
-```
+```php
 $shopCustomization->get();
 
 echo "Logo URL: " . $shopCustomization->logoUrl . "\n";
@@ -165,7 +161,7 @@ echo "Color Scheme: " . $shopCustomization->colorScheme . "\n";
 ```
 
 * Remove Customization - Used to remove a merchant's checkout page customization.
-```
+```php
 $shopCustomization->remove();
 
 echo "Logo URL: " . $shopCustomization->logoUrl . "\n";
@@ -183,7 +179,7 @@ echo "Color Scheme: " . $shopCustomization->colorScheme . "\n";
 #### _Webhook_
 
 ##### 1. Create Webhook object
-```
+```php
 $successWebhook = new Webhook();
 $successWebhook->name = Webhook::CHECKOUT_SUCCESS;
 $successWebhook->callbackUrl = "http://shop.someserver.com/success";
@@ -191,12 +187,12 @@ $successWebhook->callbackUrl = "http://shop.someserver.com/success";
 
 ##### 2. Webhook methods
 * Register webhook - Used to register an event-based webhook.
-```
+```php
 $successWebhook->register();
 ```
 
 * Update webhook - Used to update an existing event-based webhook.
-```
+```php
 $successWebhook->callbackUrl .= "Updated";
 $successWebhook->update();
 
@@ -204,12 +200,12 @@ $successWebhook->update();
 ```
 
 * Delete webhook - Used to delete an existing webhook. You cannot undo this action.
-```
+```php
 $successWebhook->delete();
 ```
 
 * Retrieve webhooks - Used to retrieve the list of merchant registered webhooks.
-```
+```php
 Webhook::retrieve();
 ```
 
