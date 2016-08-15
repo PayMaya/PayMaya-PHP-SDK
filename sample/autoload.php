@@ -1,7 +1,6 @@
 <?php
 
 require __DIR__ . "/../lib/PayMaya/PayMayaSDK.php";
-require __DIR__ . "/../lib/PayMaya/Model/PayMayaModel.php";
 require __DIR__ . "/../lib/PayMaya/API/Checkout.php";
 require __DIR__ . "/../lib/PayMaya/API/Customization.php";
 require __DIR__ . "/../lib/PayMaya/API/Webhook.php";

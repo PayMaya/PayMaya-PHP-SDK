@@ -6,14 +6,14 @@ use PayMaya\Core\CheckoutAPIManager;
 
 class Checkout
 {
-	public $id;
+	// public $id;
 	public $url;
 	public $buyer;
 	public $items;
 	public $totalAmount;
 	public $requestReferenceNumber;
 	public $redirectUrl;
-	public $status;
+	// public $status;
 	public $paymentType;
 	public $transactionReferenceNumber;
 	public $receiptNumber;
