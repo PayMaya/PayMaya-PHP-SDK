@@ -17,7 +17,7 @@ Tests
 
 * Via Composer
 ```sh
-composer require "paymaya/paymaya-sdk:*
+composer require "paymaya/paymaya-sdk:*"
 ```
 
 * Direct download
