@@ -22,7 +22,6 @@ class PayMayaSDK
 		return self::$instance;
 	}
 
-	// camel case
 	public function initCheckout($publicApiKey = null, $secretApiKey = null, $environment = "SANDBOX")
 	{
 		$this->checkoutPublicApiKey = $publicApiKey;
