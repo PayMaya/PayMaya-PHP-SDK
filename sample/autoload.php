@@ -15,3 +15,7 @@ require __DIR__ . "/../lib/PayMaya/Model/Checkout/Contact.php";
 require __DIR__ . "/../lib/PayMaya/Model/Checkout/Item.php";
 require __DIR__ . "/../lib/PayMaya/Model/Checkout/ItemAmount.php";
 require __DIR__ . "/../lib/PayMaya/Model/Checkout/ItemAmountDetails.php";
+require __DIR__ . "/../lib/PayMaya/Model/Payment/Card.php";
+require __DIR__ . "/../lib/PayMaya/Model/Payment/Amount.php";
+require __DIR__ . "/../lib/PayMaya/Model/Payment/Buyer.php";
+require __DIR__ . "/../lib/PayMaya/API/Payments.php";
