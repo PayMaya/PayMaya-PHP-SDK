@@ -16,6 +16,7 @@ $card->expM = '05';
 $card->expY = '2017';
 
 $payment = new Payments($key, $secret);
+
 try {
     $payment->createToken($card);
 } catch(\Exception $e) {
@@ -38,11 +39,13 @@ $buyer->address1 = '123 East Village';
 $buyer->city = 'Makati City';
 $buyer->state = 'Metro Manila';
 $buyer->zip = '1216';
-//$buyer->country = 'PHP' // [ optional ] default value is PHP
+//$buyer->country = 'PH' // [ optional ] default value is PH
 
 try {
     $pay = $payment->pay($buyer, $amount);
+
     print_r(json_decode($pay, true));
+
 } catch(\Exception $e) {
     die($e->getMessage());
 }

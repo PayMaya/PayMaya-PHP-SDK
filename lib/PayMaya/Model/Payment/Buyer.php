@@ -14,5 +14,5 @@ class Buyer
     public $city;
     public $state;
     public $zip;
-    public $country = 'PH'; // default value
+    public $country = 'PH'; // default value is Philippines
 }
