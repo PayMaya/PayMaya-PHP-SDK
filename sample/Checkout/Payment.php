@@ -7,13 +7,15 @@ use PayMaya\Model\Payment\Card;
 use PayMaya\Model\Payment\Amount;
 use PayMaya\Model\Payment\Buyer;
 
+$key = '[KEY]';
+$secret = '[SECRET]';
 $card = new Card();
 $card->number = '5123456789012346';
 $card->cvc = '111';
 $card->expM = '05';
 $card->expY = '2017';
 
-$payment = new Payments('pk-N6TvoB4GP2kIgNz4OCchCTKYvY5kPQd2HDRSg8rPeQG', 'sk-9lRmFTV8BIdxoXWm5liDAlKF0yL4gZzwmDQAmnvxWOF');
+$payment = new Payments($key, $secret);
 try {
     $payment->createToken($card);
 } catch(\Exception $e) {
