@@ -7,15 +7,19 @@ use PayMaya\Model\Payment\Buyer;
 
 class Payments
 {
-    const TOKEN_URL     = 'https://pg-sandbox.paymaya.com/payments/v1/payment-tokens';
-    const PAY_URL       = 'https://pg-sandbox.paymaya.com/payments/v1/payments';
-    const STATUS_URL    = 'https://pg-sandbox.paymaya.com/payments/v1/payments/%s';
+    const TOKEN_URL_SANDBOX     = 'https://pg-sandbox.paymaya.com/payments/v1/payment-tokens';
+    const PAY_URL_SANDBOX       = 'https://pg-sandbox.paymaya.com/payments/v1/payments';
+    const STATUS_URL_SANDBOX    = 'https://pg-sandbox.paymaya.com/payments/v1/payments/%s';
+
+    const TOKEN_URL     = 'https://pg.paymaya.com/payments/v1/payment-tokens';
+    const PAY_URL       = 'https://pg.paymaya.com/payments/v1/payments';
+    const STATUS_URL    = 'https://pg.paymaya.com/payments/v1/payments/%s';
 
 	protected $tokenParams  = array();
     protected $payParams    = array();
     protected $key          = NULL;
     protected $secret       = NULL;
-    protected $env          = false;
+    protected $env          = false; //default is sandbox 
     protected $token        = array();
 
     public function __construct($key, $secret, $env = false) 
@@ -47,8 +51,13 @@ class Payments
             'Content-Type:  application/json',
             'Authorization: Basic '.$auth);
         
+        $url = self::TOKEN_URL_SANDBOX;
+        if($this->env) {
+            $url = self::TOKEN_URL;
+        }
+
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::TOKEN_URL);
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -130,8 +139,13 @@ class Payments
                     'zipCode'       => $buyer->zip,
                     'countryCode'   => $buyer->country)));
         
+        $url = self::PAY_URL_SANDBOX;
+        if($this->env) {
+            $url = self::PAY_URL;
+        }
+
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::PAY_URL);
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -150,7 +164,10 @@ class Payments
             'Content-Type:  application/json',
             'Authorization: Basic '.$auth);
 
-        $url = sprintf(self::STATUS_URL, $id);
+        $url = sprintf(self::STATUS_URL_SANDBOX, $id);
+        if($this->env) {
+            $url = sprintf(self::STATUS_URL, $id);
+        }
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
