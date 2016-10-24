@@ -22,7 +22,7 @@ composer require "paymaya/paymaya-sdk:*"
 
 * Direct download
 
-Integrate the SDK by cloning this repo (https://github.com/PayMaya/PayMaya-PHP-SDK) and manually integrating it to you project. You can look at the sample directory to guide you on using the SDK
+Integrate the SDK by cloning this repo (https://github.com/PayMaya/PayMaya-PHP-SDK) and manually adding it to your project. You can look at the sample directory to guide you on using the SDK
 
 ## Prerequisites
 
