@@ -5,5 +5,5 @@ namespace PayMaya\Model\Payment;
 class Amount
 {
 	public $total;
-    public $code = 'PHP'; // default value;
+	public $code = 'PHP';
 }
