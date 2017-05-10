@@ -31,17 +31,13 @@ To use PayMaya PHP SDK, you need to have a different API key for Sandbox and Pro
  
 ##### _Sandbox Environment_
  
-Sandbox credentials are useful for testing application integration. All transactions and money flow made in this environment are only simulated and does not reflect your production records. The following sandbox API key can be used for testing purposes:
+Sandbox credentials are useful for testing application integration. All transactions and money flow made in this environment are only simulated and does not reflect your production records. Sandbox API keys are available in the following:
 
- ```
-Public-facing API Key: pk-iaioBC2pbY6d3BVRSebsJxghSHeJDW4n6navI7tYdrN
+https://developers.paymaya.com/blog/entry/checkout-api-test-credit-card-account-numbers
 
-Secret API Key: sk-uh4ZFfx9i0rZpKN6CxJ826nVgJ4saGGVAH9Hk7WrY6Q
-```
- 
 ##### _Production Environment_
  
-Upon successful integration testing, you can then request for production credentials. Upon receipt, just change your SDK initialization to use production environment to start accepting live transactions.
+Upon successful integration testing, contact us in the PayMaya Developers Portal to know more about the merchant onboarding process. Once you are onboarded, we will provide your production API credentials. Upon receipt, just change your SDK initialization to use production environment to start accepting live transactions.
 
 ## Usage
 
