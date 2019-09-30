@@ -47,7 +47,7 @@ class HTTPConnection
 		$httpStatus = curl_getinfo($session, CURLINFO_HTTP_CODE);
 
 		if (curl_errno($session)) {
-			$exception = new Exception("Error API call");
+			$exception = new Exception(curl_errno($session) . ' ' . curl_error($session));
 			curl_close($session);
 			throw $exception;
 		}
